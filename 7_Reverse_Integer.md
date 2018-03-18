@@ -19,53 +19,32 @@ Return 0 when overflows.
 
 ## Solution - Reversed String
 
-### Idea
-
 Convert integer to string, than reverse the string, finally convert the string back to integer.
+Following are some corner cases need to be considered.
 
-### Corner cases
+**(1) Number ends with zeros**
 
-#### (1) Number ends with zeros
+Keep divide the number by 10 when its modulus with 10 is zero. 
+But need aware that 0 might result an infinite loop.
 
-**Example**
+**(2) Negative Integer**
 
-```
-1230000 = 321
-```
+Reverse the string directly will result an invalid integer, like `-123=321-`.
+Therefore remove negative sign first than convert it to string, and add it back after the number is reversed.
 
-**Solution**
+**(2) Integer Overflows**
 
-Keep divide the number by 10 when its modulus with 10 is zero. But here need to be aware of that 0 might result an infinite loop.
-
-#### (2) Minus Value
-
-**Example**
-
-```
--123 = -321
-```
-
-**Solution**
-
-If just feed the integer to string direclty and reverse will create an number with invalid format, like `-123=321-`.
-Therefore we convert the negative value to positive first, then convert it back to negative after the number is reversed.
-
-#### (2) Integer Overflows
-
-**Example**
+This case happens when integer starts with smaller digit, but ends with greater one.
+In java, `Integer.valueOf` will throw `NumberFormatException` when interger overflows, 
+therefor we can catch the exception and return 0 when integer overflows.
 
 ```
 1534236469 = 9646324351 (Overflows)
 ```
 
-**Soltion** 
+### Solution (Java)
 
-This case happens when input starts with smaller digit, but its detail is greater than it.
-In java, when convert a string to integer by using Integer.valueOf(input), will raise NumberFormatException when integer overflows. Thus we can catch this exception and return 0 when catch this exception.
-
-### Solution in Java
-
-```
+```java
 class Solution {
     public int reverse(int x) {
         if (x == 0) {
@@ -93,13 +72,6 @@ class Solution {
     }
 }
 ```
-
-## Further Thought
-
-### How to Know Integer Will Overflow
-
-Think of four operator
-
 
 
 
