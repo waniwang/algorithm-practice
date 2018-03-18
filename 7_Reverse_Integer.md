@@ -22,15 +22,15 @@ Return 0 when overflows.
 Convert integer to string, than reverse the string, finally convert the string back to integer.
 Following are some corner cases need to be considered.
 
-**(1) Number ends with zeros**
+**(1) Number ends with zeros**   
 Keep divide the number by 10 when its modulus with 10 is zero. 
 But need aware that 0 might result an infinite loop.
 
-**(2) Negative Integer**
+**(2) Negative Integer**   
 Reverse the string directly will result an invalid integer, like `-123=321-`.
 Therefore remove negative sign first than convert it to string, and add it back after the number is reversed.
 
-**(2) Integer Overflows**
+**(2) Integer Overflows**   
 This case happens when integer starts with smaller digit, but ends with greater one.
 In java, `Integer.valueOf` will throw `NumberFormatException` when interger overflows, 
 therefor we can catch the exception and return 0 when integer overflows.
