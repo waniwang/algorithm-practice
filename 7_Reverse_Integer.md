@@ -39,7 +39,7 @@ therefor we can catch the exception and return 0 when integer overflows.
 1534236469 = 9646324351 (Overflows)
 ```
 
-### Solution (Java)
+**Code in Java**
 
 ```java
 class Solution {
