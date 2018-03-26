@@ -16,9 +16,9 @@ Key idea is to utilize map to accelerate.
 The key of the map will be the number we traversed, and the value will be the index.
 When traversing numbers, check if there's any key equals `target - current_number`, so that `(target - current_number) + current_number` will equals to target. If no match found, put the current number into the map.
 
-**Java code**
+**Java Code**
 
-```
+```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         if (nums.length < 2) {
@@ -40,4 +40,23 @@ class Solution {
         return null;
     }
 }
+```
+
+**Ruby code**
+
+```ruby
+def two_sum(nums, target)
+    if nums.size < 2
+        return nil
+    end
+    
+    map = Hash.new   
+    nums.each_with_index { |value, index| 
+        if map[target - value]
+            return [map[target - value], index]
+        else
+            map[value] = index
+        end
+    }
+end
 ```
